@@ -1,0 +1,19 @@
+# Environment Configuration
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# MacOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Downloads
+downloads/
