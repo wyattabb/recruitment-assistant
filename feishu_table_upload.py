@@ -166,7 +166,8 @@ def process_local_files():
     pdf_files = [f for f in os.listdir(cv_folder) if f.endswith('.pdf')]
     
     for pdf_file in pdf_files:
-        pdf_path = os.path.join(cv_folder, pdf_file)
+        # 确保 cv_folder 不为 None，如果为 None 则使用默认值
+        pdf_path = os.path.join(cv_folder if cv_folder is not None else "", pdf_file)
         file_key = f"{pdf_file}_{os.path.getsize(pdf_path)}"
         
         # 检查重复
