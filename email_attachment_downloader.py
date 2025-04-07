@@ -25,7 +25,7 @@ EMAIL_CONFIG = {
     'days': 1,
     'keywords': [],
     'file_types': None,
-    'sender_domain': '@service.bosszhipin.com'
+    'sender_domain': 'bosszhipin.com'  # 修改为主域名，不带@
 }
 
 # 从环境变量获取密码
@@ -191,9 +191,10 @@ def download_attachments(host, username, password, folder, save_dir, days=None, 
                     continue
                 from_header = data[0][1].decode('utf-8') if data[0][1] else ''
                 # 提取邮箱地址
-                email_match = re.search(r'[\w\.-]+@[\w\.-]+', from_header)
-                if email_match and email_match.group().endswith(sender_domain):
+                email_match = re.search(r'[\w\.-]+@([\w\.-]+)', from_header)
+                if email_match and sender_domain in email_match.group(1):
                     filtered_ids.append(num)
+                    print(f"匹配到发件人: {email_match.group()}")
             
             mail_ids = filtered_ids
             print(f"过滤后剩余 {len(mail_ids)} 封邮件")
